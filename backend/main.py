@@ -7,8 +7,16 @@ app = FastAPI()
 async def chat(request: Request):
     data = await request.json()
     user_input = data.get("message", "")
-    response = agent.invoke(user_input)
-    return {"response": response}
+    print(f"📩 User input: {user_input}")
+
+    try:
+        response = agent.invoke(user_input)
+        print(f"🤖 Bot response: {response}")
+        return {"response": response}
+    except Exception as e:
+        print(f"❌ Error during agent response: {e}")
+        return {"response": f"❌ Error processing request: {str(e)}"}
+
 
 @app.get("/")
 def read_root():
