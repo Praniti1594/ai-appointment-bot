@@ -12,8 +12,21 @@ SERVICE_ACCOUNT_FILE = os.getenv("SERVICE_ACCOUNT_FILE")  # ✅ Loaded from .env
 CALENDAR_ID = os.getenv("CALENDAR_ID")                    # ✅ Loaded from .env
 
 # ✅ Create credentials and service
-credentials = service_account.Credentials.from_service_account_file(
-    SERVICE_ACCOUNT_FILE, scopes=SCOPES)
+import base64
+import json
+import os
+
+encoded_creds = os.getenv("GOOGLE_CREDS_BASE64")
+if not encoded_creds:
+    raise ValueError("Missing GOOGLE_CREDS_BASE64 environment variable")
+
+decoded_json = base64.b64decode(encoded_creds).decode("utf-8")
+service_account_info = json.loads(decoded_json)
+
+credentials = service_account.Credentials.from_service_account_info(
+    service_account_info, scopes=SCOPES
+)
+
 service = build('calendar', 'v3', credentials=credentials)
 
 # ✅ Check availability between start and end time
