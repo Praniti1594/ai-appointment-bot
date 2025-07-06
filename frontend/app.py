@@ -15,8 +15,10 @@ if st.button("Send"):
         st.session_state.chat_history.append(("You", user_input))
 
         # Call FastAPI backend
+        # API_URL = "https://ai-appointment-bot-3.onrender.com/chat"
+
         try:
-            response = requests.post("http://localhost:8000/chat", json={"message": user_input})
+            response = requests.post("https://ai-appointment-bot-3.onrender.com/chat", json={"message": user_input})
             bot_reply = response.json().get("response", "Something went wrong.")
         except Exception as e:
             bot_reply = f"⚠️ Error: {e}"
