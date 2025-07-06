@@ -9,3 +9,8 @@ async def chat(request: Request):
     user_input = data.get("message", "")
     response = agent.invoke(user_input)
     return {"response": response}
+
+@app.get("/")
+def read_root():
+    return {"message": "🤖 AI Appointment Bot is running!"}
+
