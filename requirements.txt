@@ -1,0 +1,26 @@
+# === Core Backend ===
+fastapi
+uvicorn
+
+# === LangChain & Gemini ===
+langchain
+langchain-google-genai
+google-generativeai
+
+# === Google Calendar Integration ===
+google-api-python-client
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
+
+# === Date Parsing ===
+dateparser
+
+# === Environment Handling ===
+python-dotenv
+
+# === Frontend (Streamlit) ===
+streamlit
+
+# === Optional Dev Utils ===
+httpx
