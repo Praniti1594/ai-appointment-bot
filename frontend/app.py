@@ -16,11 +16,8 @@ if st.button("Send"):
 
         # Call FastAPI backend
         try:
-            response = requests.post(
-                "https://ai-appointment-bot-3.onrender.com/chat",
-                json={"message": user_input},
-                timeout=10
-            )
+            response = requests.post("https://ai-appointment-bot-3.onrender.com/chat", json={"message": user_input}, timeout=30)
+
             response.raise_for_status()
             bot_reply = response.json().get("response", "🤖 No response from bot.")
         except requests.exceptions.RequestException as e:
